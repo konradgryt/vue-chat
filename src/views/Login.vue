@@ -31,7 +31,7 @@ export default {
     login() {
       if(this.name) {
         this.$router.push({
-          name: 'Chat',
+          name: 'chat',
           params: { name: this.name }
         })
       } else {

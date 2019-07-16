@@ -1,3 +1,5 @@
+import firebase from 'firebase'
+
 require('dotenv').config(); // allows having env variables in .env file
 
 var firebaseConfig = {
@@ -9,7 +11,16 @@ var firebaseConfig = {
   messagingSenderId: process.env.MS_ID,
   appId: process.env.API_ID
 };
-firebaseApp.initializeApp(firebaseConfig);
-firebaseApp.firestore().settings({ timestampsInSnapshots: true});
+firebase.initializeApp(firebaseConfig);
+//firebase.firestore().settings({ timestampsInSnapshots: true}); in firestore 6.30 is default to true
 
-export default firebaseApp.firestore();
+export default firebase.firestore();
+
+// rules_version = '2';
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//     match /{document=**} {
+//       allow read, write: if false;
+//     }
+//   }
+// }
